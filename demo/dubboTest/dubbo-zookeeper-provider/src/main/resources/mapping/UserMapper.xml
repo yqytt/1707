@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.jk.model.User">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="PWD" jdbcType="VARCHAR" property="pwd" />
+  </resultMap>
+
+  <resultMap id="aa" type="com.jk.model.Goodgl">
+    <id column="sn"  property="sn" />
+    <result column="name" property="name" />
+    <result column="product_category" property="product_category" />
+    <result column="price" property="price" />
+  </resultMap>
+
+  <select id="userList" parameterType="com.jk.model.User" resultMap="BaseResultMap">
+    select * from T_USER
+  </select>
+
+  <select id="goodList" parameterType="com.jk.model.Goodgl" resultMap="aa">
+    select * from xx_product p,xx_product_category pc WHERE
+   p.product_category = pc.id
+  </select>
+
+  <delete id="deletegoodgl" parameterType="Integer">
+    delete from xx_product
+    where sn = #{bb}
+  </delete>
+
+</mapper>
